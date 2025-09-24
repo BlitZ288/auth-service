@@ -1,0 +1,35 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go build output
+/bin/
+/auth-service
+
+# Dependency directories
+vendor/
+
+# IDE/editor stuff
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files (секреты, конфиги)
+.env
+*.local
+
+# Docker
+docker-data/
+mongo-data/
