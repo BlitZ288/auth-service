@@ -42,9 +42,15 @@ func (store *mongoUserStore) FindById(ctx context.Context, id primitive.ObjectID
 	return &user, err
 }
 
-func (store *mongoUserStore) Update(ctx context.Context, user *User, update *primitive.M) error {
-	_, err := store.col.UpdateOne(ctx, bson.M{"_id": user.Id}, update)
-	return err
+func (store *mongoUserStore) Update(ctx context.Context, user *User, update bson.M) error {
+	result, err := store.col.UpdateOne(ctx, bson.M{"_id": user.Id}, bson.M{"$set": update})
+	if err != nil {
+		return err
+	}
+	if result.MatchedCount == 0 {
+		return ErrNotFound
+	}
+	return nil
 }
 
 func (store *mongoUserStore) EnsureIndexes(ctx context.Context) error {

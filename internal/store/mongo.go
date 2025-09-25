@@ -20,7 +20,6 @@ func ConnectMongo(ctx context.Context, uri string) (*mongo.Client, error) {
 		log.Fatal(err.Error())
 		return nil, err
 	}
-	defer client.Disconnect(ctx)
 
 	return client, nil
 }
